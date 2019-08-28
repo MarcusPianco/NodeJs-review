@@ -7,6 +7,9 @@
 <p>Delega chamadas externas ao SO e define uma função para retorno(callback)</p>
 <p>Funções que dependem de execuções externas serão executados em background</p>
 <p>É preciso garantir a ordem de execução das funções<p>
+  
+![alt text](https://i.stack.imgur.com/Lbs9z.png)
+
 
 ## CallBacks
 

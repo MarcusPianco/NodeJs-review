@@ -19,3 +19,7 @@ Acessar o commit: <a href="https://github.com/MarcusPianco/NodeJs-review/commit/
 ## Revisando Async-Await
 
 Acessar o commit: <a href="https://github.com/MarcusPianco/NodeJs-review/commit/3cb75298729dea64c846688bd8c0b4715af1fa1d">Commit Async Await</a>
+
+## Aprendendo sobre EventEmitter
+
+Acessar o commit: <a href="https://github.com/MarcusPianco/NodeJs-review/commit/1e528dfd0d609caec6e5cc78a4bcb0c93fd3c855">Commit EventEmitter</a>

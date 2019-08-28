@@ -43,39 +43,59 @@ function getAddress(idUser, callback) {
     });
   }, 2000);
 }
+main();
+async function main() {
+  try {
+    console.time("medida-promise");
+    const user = await getUser();
+    //execução em 5.14s
+    // const phone = await getPhone(user.id);
+    // const address = await getAddressAsync(user.id);
+
+    //Performatico para métodos que nnao teem interdepedência
+    const result = await Promise.all([
+      getAddressAsync(user.id),
+      getPhone(user.id)
+    ]);
+    console.log(user, result[1], result[0]);
+    console.timeEnd("medida-promise");
+  } catch (error) {
+    console.log("Deu ruim", error);
+  }
+}
 
 //Para manipular o sucesso usamos a função then
 //Para erros a funçnao catch
-const userPromise = getUser();
+// const userPromise = getUser();
 
-userPromise
-  .then(function(user) {
-    return getPhone(user.id).then(function resolvePhone(result) {
-      return {
-        user: {
-          id: user.id,
-          nome: user.nome
-        },
-        telefone: result
-      };
-    });
-  })
-  .then(function(userPhoneResult) {
-    const address = getAddressAsync(userPhoneResult.user.id);
-    return address.then(function resolveAddress(result) {
-      return {
-        user: userPhoneResult.user,
-        telefone: userPhoneResult.telefone,
-        address: result
-      };
-    });
-  })
-  .then(function(result) {
-    console.log("resultado", result);
-  })
-  .catch(function(error) {
-    console.log("Deu RUum", error);
-  });
+// userPromise
+//   .then(function(user) {
+//     return getPhone(user.id).then(function resolvePhone(result) {
+//       return {
+//         user: {
+//           id: user.id,
+//           nome: user.nome
+//         },
+//         telefone: result
+//       };
+//     });
+//   })
+//   .then(function(userPhoneResult) {
+//     const address = getAddressAsync(userPhoneResult.user.id);
+//     return address.then(function resolveAddress(result) {
+//       return {
+//         user: userPhoneResult.user,
+//         telefone: userPhoneResult.telefone,
+//         address: result
+//       };
+//     });
+//   })
+//   .then(function(result) {
+//     console.log("resultado", result);
+//   })
+//   .catch(function(error) {
+//     console.log("Deu RUum", error);
+//   });
 
 // //Aninhamento de funções para sincronizar execuções e conseguir valores
 // getUser(function resolveUser(err, user) {
